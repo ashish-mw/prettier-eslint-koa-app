@@ -12,7 +12,7 @@ This project uses
 - Files `.eslintrc.json`, `.eslintignore` and `.prettierrc` needs to be added.
 - `npx install-peerdeps --dev eslint-config-koa`
 - Open vscode's `settings.json` file and add these in.
-    ```
+    ```json
     ...
     // Set the default
     "editor.formatOnSave": false,
