@@ -53,4 +53,14 @@ export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
 This project uses the same `.gitignore` file as [pd-care](https://github.com/mindwaveventures/pd-care/blob/staging/server/user/.gitignore).
 
+## Running the test app
 
+### The app
+```
+npm install
+npm run dev
+```
+
+### The endpoints
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/d27489bcb249ce5ec595)
