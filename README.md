@@ -62,6 +62,8 @@ npm install
 npm run dev
 ```
 
+- Visit http://localhost:5000 for swagger ui.
+
 ### The endpoints
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/d27489bcb249ce5ec595)
