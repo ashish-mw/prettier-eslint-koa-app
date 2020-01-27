@@ -3,6 +3,7 @@
 This project uses
 - https://www.robinwieruch.de/prettier-eslint
 - https://www.robinwieruch.de/how-to-use-prettier-vscode
+- https://mherman.org/blog/swagger-and-nodejs/ - for swagger
 
 ## Steps
 
