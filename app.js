@@ -97,7 +97,7 @@ router.get('/swagger.json', ctx => {
  *         schema:
  *           $ref: '#/definitions/Cat'
  */
-router.get('/cats', ctx => {
+router.get('/secured-cats', ctx => {
   ctx.body = db;
 });
 
