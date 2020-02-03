@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
+const logger = require('koa-logger')
 const swaggerJSDoc = require('swagger-jsdoc');
 
 const app = new Koa();
@@ -8,6 +9,8 @@ const router = new Router();
 
 const serve = require('koa-static');
 app.use(serve('api-docs'));
+
+app.use(logger())
 
 // swagger definition
 const swaggerDefinition = {
@@ -17,6 +20,13 @@ const swaggerDefinition = {
     description: 'A RESTful Cat API with Swagger + Koa/Node',
   },
   host: 'localhost:5000',
+  securityDefinitions: {
+    Bearer: {
+      type: 'apiKey',
+      name: 'Authorization',
+      in: 'header'
+    },
+  },
   basePath: '/',
 };
 
@@ -44,6 +54,14 @@ app.use(
   }),
 );
 
+// middleware to printout the request
+app.use((ctx, next) => {
+  console.log('headers = ', ctx.request.headers)
+  console.log('body = ', ctx.request.body)
+  console.log('params = ', ctx.request.params)
+  next();
+})
+
 // start of routes
 
 // serve swagger
@@ -59,6 +77,29 @@ router.get('/swagger.json', ctx => {
  *       name:
  *         type: string
  */
+
+/**
+ * @swagger
+ * /secured-cats:
+ *   get:
+ *     security:
+ *       - Bearer: []
+ *     tags:
+ *       - Cats
+ *     description: Returns all cats
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       403:
+ *         description: 'Not authorized'
+ *       200:
+ *         description: An array of cats
+ *         schema:
+ *           $ref: '#/definitions/Cat'
+ */
+router.get('/cats', ctx => {
+  ctx.body = db;
+});
 
 /**
  * @swagger
@@ -78,7 +119,6 @@ router.get('/swagger.json', ctx => {
 router.get('/cats', ctx => {
   ctx.body = db;
 });
-
 
 
 /**
